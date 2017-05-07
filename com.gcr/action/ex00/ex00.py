@@ -16,21 +16,24 @@
 #     draw.text((width-30,0), '1', font=myfont, fill=fillcolor)
 #     img.save('result.jpg','jpg')
 #     return 0
-from PIL import Image, ImageDraw, ImageFont
 
-def write_num_on_img(filePath, num):
-    img = Image.open(filePath)
-    #img.size返回一个原则(with, height)
-    size = img.size
-    draw = ImageDraw.Draw(img)
-    color = (255, 0, 0)
-    ttfont = ImageFont.truetype("C:/windows/fonts/BELL.TTF", size=40)
-    # 关键函数，参数：文字的位置，内容，颜色，字体。
-    draw.text((size[0]-30, 0), str(num), fill=color, font=ttfont)
-    #显示一幅已载入的图像
-    img.show()
-    img.save('changed.jpg')
+# todo Mac安装PIL一直失败，先放下这个
 
-if __name__ == '__main__':
-    write_num_on_img("test.jpg", 4)
+# from PIL import Image, ImageDraw, ImageFont
+
+# def write_num_on_img(filePath, num):
+#     img = Image.open(filePath)
+#     #img.size返回一个原则(with, height)
+#     size = img.size
+#     draw = ImageDraw.Draw(img)
+#     color = (255, 0, 0)
+#     ttfont = ImageFont.truetype("C:/windows/fonts/BELL.TTF", size=40)
+#     # 关键函数，参数：文字的位置，内容，颜色，字体。
+#     draw.text((size[0]-30, 0), str(num), fill=color, font=ttfont)
+#     #显示一幅已载入的图像
+#     img.show()
+#     img.save('changed.jpg')
+#
+# if __name__ == '__main__':
+#     write_num_on_img("test.jpg", 4)
 
