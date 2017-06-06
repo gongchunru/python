@@ -15,7 +15,6 @@ def create_num(num, length=16):
         if temp not in result:
             result.append(temp)
             num -= 1
-
     return result
 
 
@@ -25,10 +24,34 @@ def save_to_mysql(code):
         host='127.0.0.1',
         port=3306,
         user='root',
-        password=None,
+        password='123456',
         db='test'
     )
 
     try:
         with conn.cursor() as cursor:
+            # create a new record
+
+            sql = "INSERT INTO codes(code) VALUES  (%s)"
+            cursor.execute(sql, code)
+
+            # connection is not autocommit by default. So you must commit to save
+            # your changes.
+
+            conn.commit()
+
+        # 查询一条数据
+        with conn.cursor() as cursor:
+            # read a single record
+            sql = "SELECT `code` FROM `codes` WHERE  code = %s"
+            cursor.execute(sql, code)
+            result = cursor.fetchone()
+            print(result)
+
+    finally:
+        conn.close()
+
+# 循环保存数据
+for code in create_num(200):
+    save_to_mysql(code)
 
